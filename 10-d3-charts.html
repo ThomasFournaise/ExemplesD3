@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Code 10</title>
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<style type="text/css">
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: blue;
+			}
+			
+			.axis text {
+				font-family: sans-serif;
+				font-size: 10px;
+			}
+		</style>
+	</head>
+	<body>
+	<p>Des graphiques</p>
+		<script type="text/javascript">
+
+			//Width and height
+			var w = 500;
+			var h = 500;
+						
+			var dataset = [
+							20,50,30,50
+						  ];
+
+			var color = d3.scale.category10();
+						  
+			//Create scale functions
+			var outerRadius = w / 4; 
+			var innerRadius = 0; 
+			var arc = d3.svg.arc()
+			.innerRadius(innerRadius)
+			.outerRadius(outerRadius);
+
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+			
+			var pie = d3.layout.pie();
+			
+			var arcs = svg.selectAll("g.arc") 
+			.data(pie(dataset))
+			.enter() 
+			.append("g") 
+			.attr("class", "arc") 
+			.attr("transform", "translate(" + w/2 + "," + w/2 + ")") // on décale pour centrer le pie chart au milieu de la feuille
+			; 
+			
+			arcs.append("path") 
+			.attr("fill", function(d, i) { return color(i); }) 
+			.attr("d", arc);
+
+			var dataset = [
+				[
+					{ x: 0, y: 5 },
+					{ x: 1, y: 4 },
+					{ x: 2, y: 2 },
+					{ x: 3, y: 7 },
+					{ x: 4, y: 23 }
+				]
+				,
+				[	{ x: 0, y: 5 },
+					{ x: 1, y: 4 },
+					{ x: 2, y: 2 },
+					{ x: 3, y: 7 },
+					{ x: 4, y: 23 }
+				]
+				];
+			
+			var stack = d3.layout.stack();
+
+			//Data, stacked
+			stack(dataset);			
+			
+			var groups = svg.selectAll("g.stack")
+				.data(dataset)
+				.enter()
+				.append("g")
+				.attr("class", "stack")
+				.style("fill", function(d, i) {
+					return color(i);
+				});
+	
+			// Add a rect for each data value
+			var rects = groups.selectAll("rect")
+				.data(function(d) { return d; })
+				.enter()
+				.append("rect")
+				.attr("x", function(d, i) {
+					return i * 20;
+				})
+				.attr("y", function(d) {
+					return d.y0 * 5;
+				})
+				//.attr("y", function(d) {return h-(d.y0+d.y) * 5;})
+				.attr("height", function(d) {
+					return d.y * 5;
+				})
+				.attr("width", 15);			
+			
+			
+		</script>
+	</body>
+</html>

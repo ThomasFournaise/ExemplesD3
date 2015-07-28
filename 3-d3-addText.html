@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Code 3</title>
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<style type="text/css">
+			/*  */		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			d3.select("body").append("p").text("New paragraph!");
+
+			var body = d3.select("body"); 
+			var p = body.append("p"); 
+			p.text("New paragraph!");
+			
+			var svg = d3.select("body") .append("svg") .attr("width", 500) .attr("height", 500);
+
+			svg.append("circle")
+			.attr("cx", 25) 
+			.attr("cy", 25) 
+			.attr("r",20)
+			.attr("fill", "yellow") .attr("stroke", "orange") .attr("stroke-width",5);
+
+			svg.append("rect")
+			.attr("x", 50)
+			.attr("y", 50)
+			.attr("width", 20)
+			.attr("height", 100)
+			//.attr("fill", "blue")
+			; 
+
+
+		</script>
+	</body>
+</html>

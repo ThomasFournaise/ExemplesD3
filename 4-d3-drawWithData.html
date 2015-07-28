@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Code 4</title>
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<style type="text/css">
+			/*  */		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var dataset = [ 5, 10, 15, 20, 25 ];
+			d3.select("body")
+			.selectAll("p") 
+			.data(dataset) 
+			.enter() 
+			.append("p") 
+			.text("New paragraph!");
+			
+
+			d3.select("body")
+			.selectAll("div") 
+			.data(dataset) 
+			.enter() 
+			.append("div")
+			.text(function(d) { return d; })
+			.style("color", function(d) { 
+				if (d > 15) { 
+				return "red"; } 
+				else { return "black"; } 
+			});
+
+			setTimeout( function(){
+				var dataset = [ 25,20,15,10,5 ];
+				d3.select("body")
+				.selectAll("div") 
+				.data(dataset) 
+				.text(function(d) { return d; })
+				.style("color", function(d) { 
+					if (d > 15) {  
+					return "red"; } 
+					else { return "black"; } 
+				});			
+			}, 2500 )
+			
+			var svg = d3.select("body") .append("svg") .attr("width", 500) .attr("height", 500);
+			var circles = svg
+				.selectAll("circle")
+				.data(dataset)
+				.enter()
+				.append("circle");
+				
+			circles.attr("cx", function(d, i) { return (i * 50) + 50; }) 
+			.attr("cy", 50) 
+			.attr("r", function(d) { return d; })
+			.attr("fill", "yellow")
+			.attr("stroke", "orange")
+			.attr("stroke-width", function(d) { return d/2; });
+
+
+						
+		</script>
+	</body>
+</html>

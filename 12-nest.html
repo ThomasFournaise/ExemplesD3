@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Code 4</title>
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<style type="text/css">
+			/*  */		
+		</style>
+	</head>
+	<body>
+
+	<div class="output">
+	</div>
+	</body>
+			<script type="text/javascript">
+var dataset = [
+    {
+      "id": "6001",
+      "number1": "1510271",
+      "pct": "0.225",
+      "year": "2010"
+    },
+    {
+      "id": "6003",
+      "number1": "1175",
+      "pct": "0.071",
+      "year": "2010"
+    },
+    {
+      "id": "6005",
+      "number1": "38091",
+      "pct": "0.125",
+      "year": "2010"
+    },
+    {
+      "id": "6001",
+      "number1": "1510000",
+      "pct": "0.200",
+      "year": "2009"
+    },
+    {
+      "id": "6003",
+      "number1": "1000",
+      "pct": "0.1",
+      "year": "2009"
+    },
+    {
+      "id": "6005",
+      "number1": "38500",
+      "pct": "0.15",
+      "year": "2009"
+    }
+];
+
+var codeOutput = d3.select(".output");
+
+var nest = d3.nest()
+  .key(function(d) { return d.year; })
+  .map(dataset);
+  
+ var htmlContent =  JSON.stringify(nest, false, 2) + "</BR></BR>";
+ 
+ var nest = d3.nest()
+  .key(function(d) { return d.year; })
+  .rollup(function(leaves) { return {"total": d3.sum(leaves, function(d) {return parseFloat(d.number1);}), "totalPct": d3.sum(leaves, function(d) {return parseFloat(d.number1)*parseFloat(d.pct);})} })
+  .map(dataset);
+ 
+ htmlContent +=  JSON.stringify(nest, false, 2) + "</BR></BR>"; 
+  
+ codeOutput.html(htmlContent);
+ 
+
+		</script>
+</html>
