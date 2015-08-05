@@ -2,17 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Code 8</title>
+		<title>Code 7</title>
 		<script type="text/javascript" src="d3.v3.js"></script>
 		<style type="text/css">
-		.grid .tick {
-    stroke: lightgrey;
-    stroke-opacity: 0.7;
-    shape-rendering: crispEdges;
-}
-.grid path {
-          stroke-width: 0;
-}
+		
 		</style>
 	</head>
 	<body>
@@ -31,7 +24,6 @@
 			var xScale = d3.scale.linear()
 								 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
 								 .range([padding, w-padding]);
-								 
 
 			var yScale = d3.scale.linear()
 								 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
@@ -71,35 +63,6 @@
 			   .attr("fill", "red")
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "10px");
-			
-			//creation de l'axe X
-			var xAxis = d3.svg.axis();
-			xAxis.scale(xScale);
-			xAxis.orient("bottom"); 
-			svg.append("g")
-			.attr("transform", "translate(0," + (h - padding) + ")")
-			.call(xAxis);		
-			
-			//Creation de la grille verticale
-			 svg.append("g")            
-			.attr("class", "grid")
-			.attr("transform", "translate(0," + padding + ")")
-			.call(xAxis
-				.tickSize(h-2*padding, 0, 0)
-				.tickFormat("")
-			);
-			
-			//creation de la grille hotrizontale
-			var yAxis = d3.svg.axis();
-			yAxis.scale(yScale).orient("left");
-			svg.append("g")            
-			.attr("class", "grid")
-			.attr("transform", "translate(" + padding + ",0)")
-			.call(yAxis
-				.tickSize(-w+2*padding, 0, 0)
-				.tickFormat("")
-			);
-			
 			
 		</script>
 	</body>

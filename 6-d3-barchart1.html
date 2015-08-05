@@ -9,7 +9,7 @@
 			div.bar {
 				display: inline-block;
 				width: 10px;
-				height: 75px;	/* Gets overriden by D3-assigned height below */
+				height: 100px;	
 				margin-right: 2px;
 				background-color: blue;
 			}
@@ -21,7 +21,7 @@
 
 		<div id="divbar" >
 		</div>
-		<div class="d3bar" >
+		<div class="svgbar" >
 		</div>
 		
 		<script type="text/javascript">
@@ -39,7 +39,7 @@
 					return barHeight + "px";
 				});
 
-			var svg = d3.select(".d3bar")
+			var svg = d3.select(".svgbar")
 			.append("svg")
 			.attr("width", w)
 			.attr("height", h);	

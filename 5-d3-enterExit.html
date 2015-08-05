@@ -14,9 +14,11 @@
 			
 			var svg = d3.select("body") .append("svg") .attr("width", 500) .attr("height", 500);
 			var circles = svg
+				.selectAll("circle");
+			circles = svg
 				.selectAll("circle")
-				.data(dataset)
-				.enter()
+				.data(dataset);
+				circles.enter()
 				.append("circle");
 				
 			circles.attr("cx", function(d, i) { return (i * 50) + 50; }) 
@@ -27,31 +29,30 @@
 			.attr("stroke-width", function(d) { return d/2; });
 
 			setTimeout( function(){
-				var dataset = [ 30,25,20,15,10,5 ];
+				var dataset = [ 30 ];
 				
 				circles = svg
 				.selectAll("circle")
 				.data(dataset);
 				
-				//circles.enter().append("circle")
+				circles.enter().append("circle");
+			//	var tempSel=circles.enter();
 				
-				circles
-				//.transition()
-				//.delay (function(d,i) {return i * 1000;})
+			/*	circles
 				.attr("cx", function(d, i) { return (i * 50) + 50; }) 
 				.attr("cy", 50) 
 				.attr("r", function(d) { return d; })				
 				.attr("fill", function(d) {
 					if (d > 15) { return "red"; } 
-					else { return "orange"; } });
+					else { return "orange"; } });*/
 
-				/*circles.enter().append("circle")
+				circles.enter().append("circle")
 				.attr("cx", function(d, i) { return (i * 50) + 50; }) 
 				.attr("cy", 50) 
 				.attr("r", function(d) { return d; })				
-				.attr("fill", "blue"); */
+				.attr("fill", "blue"); 
 
-				//circles.exit().remove();
+				circles.exit().remove();
 			
 			}, 1000 )
 			
