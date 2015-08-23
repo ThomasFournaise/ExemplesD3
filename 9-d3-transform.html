@@ -105,10 +105,12 @@
 					   		return yScale(d[1]);
 					   })
 					   .attr("fill", d3.rgb(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255)))
-/*					   .each("end", function() {      // 
+					   .each("end", function() {      // 
 						   d3.select(this)
+							 .transition()
+							 .delay(1000)
 							 .attr("r", Math.floor(Math.random() * 10 + 5));
-					   })	*/
+					   })	
 					   ;
 
 					//Mise à jour de l'axe X
