@@ -36,8 +36,7 @@
 			var svg = d3.select("body")
 			.append("svg")
 			.attr("width", w)
-			.attr("height", h)
-			.attr("viewBox", "0 0 700 500");			
+			.attr("height", h);			
 						
 			d3.json("france.json", function(json) { 
 				svg.selectAll("path") 
